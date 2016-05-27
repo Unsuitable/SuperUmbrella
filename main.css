@@ -1,22 +1,61 @@
-div.rainbow {
-  width: 500px
-  height: 500px
-  -webkit-border-radius: 30px
-  -moz-border-radius: 30px
-         
-  /* Now for some shadow action */
-  -webkit-box-shadow: 1px -1px #b2492c, 2px -2px #b2492c, 3px -3px #b2492c, 4px -4px #b2492c, 5px -5px #b2492c, 6px -6px #b2492c, 7px -7px #b2492c, 8px -8px #b2492c, 9px -9px #b2492c, 10px -10px #b2492c, ...
-  11px -11px #b2492c, ...
-  21px -21px #ea5f24, ...
-  31px -31px #ea5f24, ...
-  41px -41px #f8c617, ...
-  51px -51px #f8c617, ...
-  61px -61px #068e8c, ...
-  71px -71px #068e8c, ...
-  81px -81px #0bc3b8, ...
-  91px -91px #0bc3b8, ...
-  100px -100px #0bc3b8;
-         
-  -moz-box-shadow: 1px -1px #b2492c, ...
-  100px -100px #0bc3b8;
+.container{
+	width: 300px;
+	height:300px;
+	margin: 0 auto;
+	position:relative;
+	overflow:hidden;
+}
+
+.planet{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url(http://demo.tutorialzine.com/2013/10/css3-features-you-can-finally-use/assets/img/planet.png) no-repeat center center;
+}
+
+.rocket{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url(http://demo.tutorialzine.com/2013/10/css3-features-you-can-finally-use/assets/img/rocket.png) no-repeat 50px center;
+
+	/* Chrome still requires the -webkit- prefix */
+	-webkit-animation:orbit 2s linear infinite;
+	animation:orbit 2s linear infinite;
+
+	transition:background-position 0.8s;
+}
+
+.container:hover .rocket{
+	background-position:80px center;
+}
+
+/* Define the keyframes of the animation */
+
+@-webkit-keyframes orbit {
+	from {
+		-webkit-transform:rotate(0deg);}
+	to {
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+@keyframes orbit {
+	from {
+		transform:rotate(0deg);
+
+		/* I am including the -webkit-transform properties, because
+		   Chrome might start supporting keyframe without prefix in the future,
+		   but we can't be certain whether it will support prefix-free transform
+		   at the same time */
+
+		-webkit-transform:rotate(0deg);}
+	to {
+		transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+	}
 }
